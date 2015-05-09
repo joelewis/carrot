@@ -19,8 +19,10 @@ from carrot_app import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    # url(r'^login/$', views.user_login),
-    # url(r'^signup/$', views.user_signup),
-    # url(r'^logout/$', views.user_logout),
+    url(r'^login/$', views.user_login),
+    url(r'^signup/$', views.user_signup),
+    url(r'^logout/$', views.user_logout),
     url(r'^$', views.index),
+    url(r'^api/v1/apps$', views.app_list),
+    url(r'^api/v1/apps/(?P<app_id>\d+)$', views.log_list),
 ]

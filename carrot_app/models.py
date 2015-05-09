@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.forms.models import model_to_dict
 
 # Create your models here.
-class App(models.Model):
+class Application(models.Model):
     title = models.CharField(max_length=255, null=True)
     user = models.ForeignKey(User, null=True)
     secret_key = models.CharField(max_length=255, null=True)
@@ -19,7 +19,7 @@ class LogEntry(models.Model):
     title = models.TextField(null=True)
     description = models.TextField(null=True)
     link = models.URLField(max_length=255, null=True)
-    app_id = models.ForeignKey('App', null=True)
+    app_id = models.ForeignKey('Application', null=True)
 
 
     @classmethod

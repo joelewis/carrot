@@ -10,7 +10,8 @@ angular.module('carrot.controllers', [])
 
   	$scope.get_apps = function() {
   		$http.get('/api/v1/apps').success(function(data, status, headers, config) {
-  			$scope.apps = data;
+  			console.log(data);
+        $scope.apps = data;
   		});
   	}
 
@@ -20,10 +21,20 @@ angular.module('carrot.controllers', [])
   	$scope.createApp = function( appname ) {
   		if ( appname == '' )
   			return false;
-  		$http.post('/api/v1/apps', {'name':appname}).success(function(data, status, headers, config) {
-  			$scope.apps.push(data);
-  			$scope.appname = '';
-  		});
+
+      $.ajax({
+        method: 'post',
+        url: '/api/v1/apps',
+        data: {'appname': appname},
+        dataType: 'json',
+        success: function() {
+          console.log('success');
+        }
+      })
+  		// $http.put('/api/v1/apps', {'appname':appname}).success(function(data, status, headers, config) {
+      //   $scope.apps.push(data);
+  		// 	$scope.appname = '';
+  		// });
   	}
 
   }])

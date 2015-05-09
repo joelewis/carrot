@@ -77,6 +77,10 @@ angular.module('carrot.controllers', [])
 
   	 }
 
+        $scope.timeAgo = function(time) {
+          return moment(new Date(time.split(' ').join('T'))).fromNow()
+        }
+
   	 console.log('/api/v1/apps/'+$scope.app_id);
   	 $scope.get_logs = function() {
   	 	$http.get('/api/v1/apps/'+$scope.app_id).success(function(data, status, headers, config) {

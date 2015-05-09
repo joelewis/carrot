@@ -30,7 +30,8 @@
 
 <div class="list-group list-group-vani">
   <a href="#" class="list-group-item" ng-repeat="log in logs">
-    <h4 class="list-group-item-heading">{{log.title}}</h4>
-    <p class="list-group-item-text">{{log.description}}</p>
+    <h4 class="list-group-item-heading">{{ log.title }}</h4>
+    <p class="list-group-item-text">{{ log.description }}</p>
+    <p class="list-group-item-text">{{ timeAgo(log.date_created) }}</p>
   </a>
 </div>

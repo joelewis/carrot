@@ -1,11 +1,11 @@
-import shortuuid
+import shortuuid, datetime, time
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms.models import model_to_dict
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 
-# Create your models here.
+
 class Application(models.Model):
     title = models.CharField(max_length=255, null=True)
     user = models.ForeignKey(User, null=True)

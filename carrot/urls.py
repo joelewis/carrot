@@ -24,12 +24,11 @@ urlpatterns = [
     url(r'^apps/.*?', views.index),
     url(r'^api/v1/apps$', views.app_list),
     url(r'^api/v1/apps/(?P<app_id>\d+)$', views.log_list),
+    url(r'^api/v1/apps/(?P<app_id>\d+)/(?P<log_id>\d+)$', views.log_kill),
 
     # carrot.js ends
     url(r'notifications/(?P<app_key>.+)/(?P<user_id>.+)/count$', views.unread_count),
     url(r'notifications/(?P<app_key>.+)/(?P<user_id>.+)/unread$', views.unread_logs),
     url(r'notifications/(?P<app_key>.+)/(?P<user_id>.+)/read$', views.mark_as_read),
-
-
     url(r'iframe/notifications/(?P<app_key>.+)/(?P<user_id>.+)/', views.render_iframe),
 ]

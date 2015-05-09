@@ -72,6 +72,14 @@ def app_list(request):
         response = [model2dict(app) for app in apps]
         return HttpResponse(json.dumps(response), content_type="application/json")
 
+@login_required
+@csrf_exempt
+def log_kill(request, app_id, log_id):
+    user = request.user
+    if request.method == 'DELETE':
+        app = get_object_or_404(Application, id=app_id, user=user)
+        LogEntry.objects.get(id=log_id).delete()
+        return HttpResponse(json.dumps({'success':True}), content_type="application/json")
 
 @login_required
 @csrf_exempt

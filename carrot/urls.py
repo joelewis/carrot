@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^signup/$', views.user_signup),
     url(r'^logout/$', views.user_logout),
     url(r'^$', views.index),
+    url(r'^api/v1/apps$', views.app_list),
+    url(r'^api/v1/apps/(?P<app_id>\d+)$', views.log_list),
 ]

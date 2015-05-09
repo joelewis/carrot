@@ -85,6 +85,9 @@ angular.module('carrot.controllers', [])
   	 $scope.get_logs = function() {
   	 	$http.get('/api/v1/apps/'+$scope.app_id).success(function(data, status, headers, config) {
   	 		console.log(data);
+        data.logs.sort(function(a, b) {
+          return new Date(b.date_created) - new Date(a.date_created);
+        });
   	 		$scope.logs = data.logs;
   	 		$scope.app = data;
   	 	});

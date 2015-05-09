@@ -20,11 +20,11 @@
           <div class="notification-item-title">{{notification.title}}</div>
         </div>
         <div class="notification-item-description">{{notification.description}}
-            {% if notification.link %}<div class="link"> <a href="{{notification.link}}">Learn More...</a></div>{% endif %}
+            {% if notification.link %}<div class="link"> <a href="{{notification.link}}">Learn More</a></div>{% endif %}
         </div>
-        <div class="notification-item-meta">{{ notification.date_created | timeAgo }}</div></li>
+      </div>
     </div>
-    {% endif %}
+    {% endfor %}
     {% endblock %}
     </div>
     <script src="/static/js/jquery-1.11.3.js"></script>

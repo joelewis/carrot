@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible"  content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/carrot.css" rel="stylesheet">
     <base href="/">
   </head>
   <body>
@@ -34,6 +35,11 @@
         <div ng-view></div>
       {% endblock %}
     </div>
+    <script>
+      window.user = {}
+      window.user.username = "{{ user.username }}";
+      window.user.user_id = "{{ user.id }}";
+    </script>
     <script src="/static/js/jquery-1.11.3.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/angular-1.2.9.min.js"></script>

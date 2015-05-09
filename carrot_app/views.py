@@ -55,7 +55,6 @@ def index(request):
         # render landing page
         return render(request, 'landing.html', {})
 
-
 @login_required
 @csrf_exempt
 def app_list(request):
@@ -117,9 +116,7 @@ def log_list(request, app_id):
         app["logs"] = logs
         return api_response(app)
 
-
 # carrot.js related views
-
 
 def get_unread_logentry_list(app, user_id):
 	"""
@@ -135,7 +132,6 @@ def unread_count(request, app_key, user_id):
     if request.GET.get('callback') != None:
     	return HttpResponse(request.GET.get('callback') + '({ count: %s})' % count, content_type="application/json")
     return HttpResponse(str(count))
-
 
 def unread_logs(request, app_key, user_id):
 	"""
@@ -162,7 +158,6 @@ def mark_as_read(request, app_key, user_id):
 		return HttpResponse(request.GET.get('callback') + '({ "message": "' + message + '"})', content_type="application/json")
 	else:
 		return HttpResponse(json.dumps({'message':message}, indent=4), content_type="application/json")
-
 
 def render_iframe(request, app_key, user_id):
 	app = Application.objects.get(secret_key=app_key)

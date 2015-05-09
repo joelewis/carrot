@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
@@ -27,6 +27,11 @@ def user_login(request):
             login(request, user_obj)
             return HttpResponseRedirect('/')
     return render(request, 'login.html', {})
+
+@csrf_exempt
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/')
 
 def index(request):
     if request.user.is_authenticated():

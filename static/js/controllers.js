@@ -27,14 +27,12 @@ angular.module('carrot.controllers', [])
         url: '/api/v1/apps',
         data: {'appname': appname},
         dataType: 'json',
-        success: function() {
-          console.log('success');
+        success: function(data) {
+          console.log(data);
+          $scope.apps.push(data);
+          $scope.appname = '';
         }
-      })
-  		// $http.put('/api/v1/apps', {'appname':appname}).success(function(data, status, headers, config) {
-      //   $scope.apps.push(data);
-  		// 	$scope.appname = '';
-  		// });
+      });
   	}
 
   }])
@@ -57,12 +55,21 @@ angular.module('carrot.controllers', [])
     	 		'title': title,
     	 		'description': description
     	 	}
-    	 	$http.post('/api/v1/apps/'+$scope.app_id, data).success(function(data, status, headers, config) {
+    	 	var successCallback = function(data) {
     	 		console.log(data);
     	 		$scope.logs.unshift(data);
     	 		$scope.newLogTitle = '';
     	 		$scope.newLogDescription =''
-    	 	});
+    	 	};
+
+         $.ajax({
+           method: 'post',
+           url: '/api/v1/apps',
+           data: {'appname': appname},
+           dataType: 'json',
+           success: successCallback
+         });
+
   	 }
 
   	 console.log('/api/v1/apps/'+$scope.app_id);

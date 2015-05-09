@@ -4,3 +4,129 @@
   border-bottom: 1px solid #aaa;
   background: transparent;
 }
+
+.signupform {
+	position: absolute;
+	top: 30%;
+	left: 40%;
+}
+
+.signupform .input-group {
+	margin-top: 1.5em;
+}
+
+.signupform .input-group .form-control {
+	width: 20em;
+	/*border-radius: 5px;*/
+	border: 1px solid #fff;
+	border-bottom: 1px solid #555;
+	font-size: 1.2em;
+	height: auto;
+	box-shadow: none;
+
+}
+
+.signupform span.glyphicon {
+	padding: 3px;
+}
+
+.appstarter{
+	background: transparent;
+	border:none;
+	box-shadow: none;
+	border-bottom: 1px solid #999;
+	margin-right: 5px;
+	outline: none;
+	/*color: #;*/
+}
+
+.appstarter-mini{
+	background: transparent;
+	border:none;
+	box-shadow: none;
+	border-bottom: 1px solid #999;
+	outline: none;
+	/*color: #;*/
+}
+
+
+span.list-group-item.active span.glyphicon{
+	padding: 3px;
+	cursor: pointer;
+}
+
+.log-description-add {
+	outline: none;
+}
+
+.btn-mini-vani {
+	padding: 5px 10px;
+}
+
+.btn-mini-container {
+	background: #fff;
+}
+
+.log-title-add {
+	border: none;
+	padding: 5px;
+	background: transparent;
+	outline: none;
+	font-weight: bold;
+	color: #000;
+}
+
+.log-description-add {
+	border: none;
+	outline: none;
+	width: 100%;
+}
+
+.list-group-vani {
+	margin-top: 1.5em;
+}
+.embed-textarea {
+	width: 100%;
+	resize: none;
+	font-family: monospace;
+	font-size: 13px;
+	color: #8A0000;
+	padding: 10px;
+}
+
+.main-list-container {
+	width: 75%;position: fixed;left: 50%;margin: 0 0 0 -37.5%; top: 20%;
+
+}
+div.main-list-container a.list-group-item:hover {
+	background-color: #000;
+}
+
+div.main-list-container a.list-group-item p.list-group-item-text{
+	color: #fff;
+}
+
+div.main-list-container a.list-group-item h4.list-group-item-heading{
+	color: #F90;
+}
+
+.iframe-body {
+	background: transparent;
+}
+
+.notification-nos {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background: #CC8300;
+	padding: 6px;
+	color: #fff;
+	font-size: 20px;
+	border-radius: 100%;
+	padding-left: 15px;
+	padding-right: 15px;
+	/* border: 1px solid #000; */
+	box-shadow: 10px;
+	box-shadow: #999 0px 0px 10px;
+	cursor: pointer;
+}

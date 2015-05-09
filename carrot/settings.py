@@ -15,6 +15,15 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+LOCAL = False
+try:
+    import local
+    LOCAL=True
+except:
+    pass
+
+HOST = 'carrot.com'
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/

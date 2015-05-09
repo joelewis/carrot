@@ -12,14 +12,14 @@ class Application(models.Model):
     def save(self, *args, **kwargs):
         if self.secret_key is None:
             self.secret_key = shortuuid.uuid()
-        super(Model, self).save(*args, **kwargs)
+        super(Application, self).save(*args, **kwargs)
 
 
 class LogEntry(models.Model):
     title = models.TextField(null=True)
     description = models.TextField(null=True)
     link = models.URLField(max_length=255, null=True)
-    app_id = models.ForeignKey('Application', null=True)
+    app = models.ForeignKey('Application', null=True)
 
 
     @classmethod

@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="col-lg-6">
+<div class="panel panel-default">
+  <div class="panel-heading"><input type="text" ng-model="newLogTitle" class="log-title-add" placeholder="Title of The New Feature" />
+  	<a class="btn btn-success btn-mini btn-mini-vani pull-right" ng-click="addNewLog(newLogTitle, newLogDescription)"><span class="glyphicon glyphicon-ok"></span> done </a>
+<!--   	<input type="file" class="pull-right"  /> -->
+  </div>
+  <div class="panel-body">
+    <textarea class="log-description-add" placeholder="Description of the awesome new feature goes here..." ng-model="newLogDescription">
+    </textarea>
+    <div class="row">
+      <div class="col-md-9">
+        Blog/Forum Link: <input type="text" ng-model="newLogLink" placeholder="http://"/>
+      </div>
+      <div class="col-md-3">
+        <a class="btn btn-success btn-mini btn-mini-vani pull-right" ng-click="addNewLog(newLogTitle, newLogDescription)"><span class="glyphicon glyphicon-ok"></span> done </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+	</div>
+	<div class="col-lg-6">
+<div class="well well-sm">
+	<textarea style="width:100%;resize:none;" class="embed-textarea" rows="5">{{ app.embed_script }}</textarea>
+</div>
+	</div>
+</div>
+
+
+<div class="list-group list-group-vani">
+  <a href="#" class="list-group-item" ng-repeat="log in logs">
+    <h4 class="list-group-item-heading">{{log.title}}</h4>
+    <p class="list-group-item-text">{{log.description}}</p>
+  </a>
+</div>

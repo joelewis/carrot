@@ -1,16 +1,11 @@
 import json
-
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
-from django.http import Http404
 from django.forms.models import model_to_dict
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
-
 from carrot_app.models import *
 from carrot_app.utilities import *
 
@@ -23,10 +18,10 @@ def user_signup(request):
         email = request.POST['email']
         user = User.objects.create_user(username=username, email=email, password=password)
         user.save()
-        user = authenticate(username=username, password=password) # will always return the user object.
+        user = authenticate(username=username, password=password)   # will always return the user object.
         login(request, user)
         return HttpResponseRedirect('/')
-    return render(request, 'register.html', {});
+    return render(request, '/', {});
 
 @csrf_exempt
 def user_login(request):
@@ -37,7 +32,7 @@ def user_login(request):
         if user is not None:
             login(request, user)
             return HttpResponseRedirect('/')
-    return render(request, 'login.html', {})
+    return render(request, '/', {})
 
 @csrf_exempt
 def user_logout(request):

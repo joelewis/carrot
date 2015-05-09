@@ -10,10 +10,10 @@ def user_signup(request):
         username = request.POST['username']
         password = request.POST['password']
         email = request.POST['email']
-        user_obj = User.objects.create_user(username=username, email=email, password=password)
-        user_obj.save()
-        user_obj = authenticate(username=username, password=password) # will always return the user object.
-        login(request, user_obj)
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.save()
+        user = authenticate(username=username, password=password) # will always return the user object.
+        login(request, user)
         return HttpResponseRedirect('/')
     return render(request, 'register.html', {});
 
@@ -22,9 +22,9 @@ def user_login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user_obj = authenticate(username=username, password=password)
+        user = authenticate(username=username, password=password)
         if user is not None:
-            login(request, user_obj)
+            login(request, user)
             return HttpResponseRedirect('/')
     return render(request, 'login.html', {})
 
@@ -36,7 +36,7 @@ def user_logout(request):
 def index(request):
     if request.user.is_authenticated():
         # render the page that serves logged in home page.
-        return render(request, 'angular_base.html', {user: request.user})
+        return render(request, 'angular_base.html', {"user": request.user})
     else:
         # render landing page
         return render(request, 'landing.html', {})

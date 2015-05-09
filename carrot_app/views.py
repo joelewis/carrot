@@ -117,7 +117,7 @@ def get_unread_logentry_list(app, user_id):
 	"""
 	returns a list of log entries for <app> that are unread by the given <user_id>
 	"""
-	read_logentries = [logentryread.entry for logentryread in LogEntryRead.objects.filter(app=app, user_id=user_id)]
+	read_logentries = [logentryread.log for logentryread in LogEntryRead.objects.filter(app=app, user_id=user_id)]
 	unreads = [entry for entry in LogEntry.objects.filter(app=app) if entry not in read_logentries]
 	return unreads
 
@@ -146,8 +146,8 @@ def mark_as_read(request, app_key, user_id):
 	"""
 	app = Application.objects.get(secret_key=app_key)
 	unreads = get_unread_logentry_list(app, user_id)
-	for entry in unreads:
-		logentryread = LogEntryRead(app=app, entry=entry, user_key=user_id)
+	for log in unreads:
+		logentryread = LogEntryRead(app=app, log=log, user_id=user_id)
 		logentryread.save()
 	message = 'marked {0} notifications as read'.format(len(unreads))
 	if request.GET.get('callback') != None:

@@ -31,7 +31,7 @@ def user_login(request):
 def index(request):
     if request.user.is_authenticated():
         # render the page that serves logged in home page.
-        pass
+        return render(request, 'angular_base.html', {user: request.user})
     else:
         # render landing page
         return render(request, 'landing.html', {})

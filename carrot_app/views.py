@@ -7,12 +7,12 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def user_signup(request):
     if request.method == 'POST':
-        user = request.POST['user']
-        passw = request.POST['passw']
+        username = request.POST['username']
+        password = request.POST['password']
         email = request.POST['email']
-        user_obj = User.objects.create_user(user, email, passw)
+        user_obj = User.objects.create_user(username=username, email=email, password=password)
         user_obj.save()
-        user_obj = authenticate(user, passw)
+        user_obj = authenticate(username=username, password=password) # will always return the user object.
         login(request, user_obj)
         return HttpResponseRedirect('/')
     return render(request, 'register.html', {});
@@ -20,9 +20,9 @@ def user_signup(request):
 @csrf_exempt
 def user_login(request):
     if request.method == 'POST':
-        user = request.POST['user']
-        passw = request.POST['passw']
-        user_obj = authenticate(user, passw)
+        username = request.POST['username']
+        password = request.POST['password']
+        user_obj = authenticate(username=username, password=password)
         if user is not None:
             login(request, user_obj)
             return HttpResponseRedirect('/')

@@ -8,7 +8,7 @@ from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from carrot_app.models import *
 from carrot_app.utilities import *
-
+from django.conf import settings
 from django import template
 from django.template.defaultfilters import stringfilter
 
@@ -17,11 +17,6 @@ register = template.Library()
 @register.filter
 def timeAgo(date):
     return 'Two days Ago'
-
-
-
-from django.conf import settings
-
 
 @csrf_exempt
 def user_signup(request):
@@ -115,9 +110,6 @@ def log_list(request, app_id):
         return api_response(app)
 
 
-
-
-
 # carrot.js related views
 
 
@@ -135,7 +127,6 @@ def unread_count(request, app_key, user_id):
     if request.GET.get('callback') != None:
     	return HttpResponse(request.GET.get('callback') + '({ count: %s})' % count, content_type="application/json")
     return HttpResponse(str(count))
-
 
 
 def unread_logs(request, app_key, user_id):

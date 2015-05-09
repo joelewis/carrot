@@ -81,6 +81,20 @@ angular.module('carrot.controllers', [])
           return moment(new Date(time.split(' ').join('T'))).fromNow()
         }
 
+    $scope.deleteLog = function(log) {
+          console.log(log)
+          $.ajax({
+           method: 'delete',
+           url: '/api/v1/apps/'+$scope.app_id+'/'+log.id,
+           data: log,
+           dataType: 'json',
+           success: function(data) {
+            var i = $scope.logs.indexOf(log);
+            $scope.logs.splice(i,1);
+           }
+         });
+     }
+
   	 console.log('/api/v1/apps/'+$scope.app_id);
   	 $scope.get_logs = function() {
   	 	$http.get('/api/v1/apps/'+$scope.app_id).success(function(data, status, headers, config) {

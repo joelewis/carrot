@@ -27,10 +27,10 @@
 	</div>
 </div>
 
-
 <div class="list-group list-group-vani">
   <a href="#" class="list-group-item" ng-repeat="log in logs">
     <h4 class="list-group-item-heading">{{ log.title }}</h4>
+    <span ng-click="deleteLog(log)" class="glyphicon glyphicon-remove pull-right"></span>
     <p class="list-group-item-text">{{ log.description }}</p>
     <p style="font-size:82%; color:#A9A9A9; padding-top: 7px" class="list-group-item-text">{{ timeAgo(log.date_created) }}</p>
   </a>

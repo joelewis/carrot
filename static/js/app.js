@@ -4,9 +4,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('carrot', [
   'ngRoute',
-  'carrot.directives',
   'carrot.controllers',
-
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {templateUrl: '/static/partials/home.html', controller: 'HomeCtrl'});

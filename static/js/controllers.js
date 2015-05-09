@@ -4,6 +4,7 @@
 angular.module('carrot.controllers', [])
   .controller('HomeCtrl', ['$scope', '$http', function($scope, $http) {
 
+    $scope.user = window.user;
   	$scope.apps = [];
   	$scope.appname = '';
 

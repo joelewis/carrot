@@ -1,6 +1,5 @@
 'use strict';
 
-/* Controllers */
 angular.module('carrot.controllers', [])
   .controller('HomeCtrl', ['$scope', '$http', function($scope, $http) {
 
@@ -16,7 +15,6 @@ angular.module('carrot.controllers', [])
   	}
 
   	$scope.get_apps();
-
 
   	$scope.createApp = function( appname ) {
   		if ( appname == '' )
@@ -38,7 +36,6 @@ angular.module('carrot.controllers', [])
 
   }])
    .controller('AppCtrl', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
-
 
   	 $scope.newLogTitle = '';
   	 $scope.newLogDescription = '';
@@ -74,7 +71,6 @@ angular.module('carrot.controllers', [])
            dataType: 'json',
            success: successCallback
          });
-
   	 }
 
         $scope.timeAgo = function(time) {

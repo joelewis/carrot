@@ -25,7 +25,6 @@ class LogEntry(models.Model):
     app = models.ForeignKey('Application', null=True)
     date_created = models.DateTimeField(_('date created'), default=timezone.now)
 
-
     @classmethod
     def get_unread(self, app_id, user_id):
         return []

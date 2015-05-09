@@ -7,7 +7,6 @@ from django.db.models import ImageField
 def api_response(data):
 	return HttpResponse(json.dumps(data), content_type="application/json")
 
-
 def model2dict(instance, fields=None, exclude=None):
     opts = instance._meta
     data = {}

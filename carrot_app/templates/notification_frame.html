@@ -11,7 +11,7 @@
   </head>
   <body class="iframe-body">
 
-    <div class="container">
+  <div class="container">
     {% block body %}
     {% for notification in notifications %}
     <div class="main-list-container">
@@ -20,7 +20,9 @@
           <div class="notification-item-title">{{notification.title}}</div>
         </div>
         <div class="notification-item-description">{{notification.description}}
-            {% if notification.link %}<div class="link"> <a href="{{notification.link}}">Learn More</a></div>{% endif %}
+          {% if notification.link %}
+            <div class="link"> <a href="{{notification.link}}">Learn More</a></div>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -31,13 +33,3 @@
     <script src="/static/js/bootstrap.min.js"></script>
   </body>
 </html>
-
-
-<!-- <div class="list-group">
-  {% for notification in notifications %}
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">{{ notification.title }}</h4>
-    <p class="list-group-item-text">{{ notification.description }}{% if notification.link %} <a href="{{notification.link}}">Read more</a> {% endif %}</p>
-  </a>
-  {% endfor %}
-</div> -->

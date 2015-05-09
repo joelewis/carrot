@@ -1,7 +1,6 @@
 'use strict';
 
 /* Controllers */
-
 angular.module('carrot.controllers', [])
   .controller('HomeCtrl', ['$scope', '$http', function($scope, $http) {
 

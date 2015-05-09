@@ -20,4 +20,5 @@ from carrot_app import views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', views.user_login),
+    url(r'^$', views.index),
 ]

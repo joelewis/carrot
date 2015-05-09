@@ -9,7 +9,7 @@
     </textarea>
     <div class="row">
       <div class="col-md-9">
-        Link: <input type="text" ng-model="newLogLink" class="log-description-add" placeholder="http://"/>
+        Link: <input type="text" ng-model="newLogLink" class="log-link-add" placeholder="http://"/>
       </div>
       <div class="col-md-3">
         <a class="btn btn-success btn-mini btn-mini-vani pull-right" ng-click="addNewLog(newLogTitle, newLogDescription, newLogLink)"><span class="glyphicon glyphicon-ok"></span> done </a>
@@ -29,7 +29,7 @@
 <div class="list-group list-group-vani">
   <a href="" style="cursor:pointer;" class="list-group-item" ng-repeat="log in logs">
     <h4 class="list-group-item-heading">{{ log.title }}</h4>
-    <span ng-click="deleteLog(log)" class="glyphicon glyphicon-remove pull-right"></span>
+    <span ng-click="deleteLog(log)" class="glyphicon glyphicon-trash pull-right"></span>
     <p class="list-group-item-text">{{ log.description }}</p>
     <p style="font-size:82%; color:#A9A9A9; padding-top: 7px" class="list-group-item-text">{{ timeAgo(log.date_created) }}</p>
   </a>

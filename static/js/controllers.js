@@ -91,6 +91,7 @@ angular.module('carrot.controllers', [])
            success: function(data) {
             var i = $scope.logs.indexOf(log);
             $scope.logs.splice(i,1);
+            $scope.$apply();
            }
          });
      }

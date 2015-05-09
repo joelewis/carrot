@@ -58,7 +58,7 @@ def index(request):
 def app_list(request):
     if request.method == 'POST':
         print request.POST
-        appname = request.POST['name']
+        appname = request.POST['appname']
         if appname == None or appname == '':
             raise Http404
         app = Application(title=appname, user=request.user)

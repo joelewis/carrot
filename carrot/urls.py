@@ -29,4 +29,7 @@ urlpatterns = [
     url(r'notifications/(?P<app_key>.+)/(?P<user_id>.+)/count$', views.unread_count),
     url(r'notifications/(?P<app_key>.+)/(?P<user_id>.+)/unread$', views.unread_logs),
     url(r'notifications/(?P<app_key>.+)/(?P<user_id>.+)/read$', views.mark_as_read),
+
+
+    url(r'iframe/notifications/(?P<app_key>.+)/(?P<user_id>.+)/', views.render_iframe),
 ]

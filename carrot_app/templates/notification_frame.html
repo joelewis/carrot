@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carrot</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/carrot.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body class="iframe-body">
+
+    <div class="container">
+    {% block body %}
+    {% for notification in notifications %}
+    <div class="main-list-container">
+      <div class="notification-item-container">
+        <div class="notification-item-title clearfix">
+          <div class="notification-item-title">{{notification.title}}</div>
+        </div>
+        <div class="notification-item-description">{{notification.description}}
+            {% if notification.link %}<div class="link"> <a href="{{notification.link}}">Learn More...</a></div>{% endif %}
+        </div>
+        <div class="notification-item-meta">{{ notification.date_created | timeAgo }}</div></li>
+    </div>
+    {% endif %}
+    {% endblock %}
+    </div>
+    <script src="/static/js/jquery-1.11.3.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
+
+<!-- <div class="list-group">
+  {% for notification in notifications %}
+  <a href="#" class="list-group-item">
+    <h4 class="list-group-item-heading">{{ notification.title }}</h4>
+    <p class="list-group-item-text">{{ notification.description }}{% if notification.link %} <a href="{{notification.link}}">Read more</a> {% endif %}</p>
+  </a>
+  {% endfor %}
+</div> -->

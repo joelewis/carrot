@@ -9,6 +9,16 @@ from django.contrib.auth.decorators import login_required
 from carrot_app.models import *
 from carrot_app.utilities import *
 
+from django import template
+from django.template.defaultfilters import stringfilter
+
+register = template.Library()
+
+@register.filter
+def timeAgo(date):
+    return 'Two days Ago'
+
+
 
 from django.conf import settings
 
@@ -153,3 +163,11 @@ def mark_as_read(request, app_key, user_id):
 		return HttpResponse(request.GET.get('callback') + '({ "message": "' + message + '"})', content_type="application/json")
 	else:
 		return HttpResponse(json.dumps({'message':message}, indent=4), content_type="application/json")
+
+
+def render_iframe(request, app_key, user_id):
+	app = Application.objects.get(secret_key=app_key)
+	notifications = [model2dict(e) for e in get_unread_logentry_list(app, user_id)]
+	response = render(request, 'notification_frame.html', dict(notifications=notifications))
+	response['X-Frame-Options'] = 'ALLOWALL'
+	return response

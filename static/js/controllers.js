@@ -16,8 +16,8 @@ angular.module('carrot.controllers', [])
 
   	$scope.get_apps();
 
-  	$scope.createApp = function( appname ) {
-  		if ( appname == '' )
+  	$scope.createApp = function(appname) {
+  		if (appname == '')
   			return false;
 
       $.ajax({
@@ -34,6 +34,20 @@ angular.module('carrot.controllers', [])
       });
   	}
 
+    $scope.deleteApp = function(appname) {
+      $.ajax({
+         method: 'delete',
+         url: '/api/v1/apps/delete/'+appname.id,
+         data: appname,
+         dataType: 'json',
+         success: function(data) {
+          var i = $scope.apps.indexOf(appname);
+          $scope.apps.splice(i,1);
+          $scope.$apply();
+         }
+       });
+    }
+
   }])
    .controller('AppCtrl', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
 
@@ -43,10 +57,10 @@ angular.module('carrot.controllers', [])
   	 $scope.logs = [];
 
   	 $scope.addNewLog = function(title, description, link) {
-    	 	if ( title == '' )
+    	 	if (title == '')
     	 		return false
 
-    	 	if ( description == '' )
+    	 	if (description == '')
     	 		return false
 
     	 	var data = {
@@ -67,7 +81,7 @@ angular.module('carrot.controllers', [])
          $.ajax({
            method: 'post',
            url: '/api/v1/apps/'+$scope.app_id,
-           data: { 'title': title, 'description': description, 'link': link },
+           data: {'title': title, 'description': description, 'link': link},
            dataType: 'json',
            success: successCallback
          });

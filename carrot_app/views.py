@@ -9,14 +9,6 @@ from django.contrib.auth.decorators import login_required
 from carrot_app.models import *
 from carrot_app.utilities import *
 from django.conf import settings
-from django import template
-from django.template.defaultfilters import stringfilter
-
-register = template.Library()
-
-@register.filter
-def timeAgo(date):
-    return 'Two days Ago'
 
 @csrf_exempt
 def user_signup(request):
@@ -82,6 +74,17 @@ def log_kill(request, app_id, log_id):
 
 @login_required
 @csrf_exempt
+def app_kill(request, app_id):
+    user = request.user
+    if request.method == 'DELETE':
+        app = get_object_or_404(Application, id=app_id, user=user)
+        LogEntry.objects.filter(app=app).delete()
+        LogEntryRead.objects.filter(app=app).delete()
+        Application.objects.get(id=app_id).delete()
+        return HttpResponse(json.dumps({'success':True}), content_type="application/json")
+
+@login_required
+@csrf_exempt
 def log_list(request, app_id):
     user = request.user
     if request.method == 'POST':
@@ -105,7 +108,7 @@ def log_list(request, app_id):
         }
         return api_response(log_dict)
 
-    if request.method == 'GET':
+    elif request.method == 'GET':
         print "request get"
         app = get_object_or_404(Application, id=app_id, user=user)
         logs = [model2dict(logentry) for logentry in LogEntry.objects.filter(app=app)]

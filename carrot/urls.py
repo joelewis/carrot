@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^apps/.*?', views.index),
     url(r'^api/v1/apps$', views.app_list),
     url(r'^api/v1/apps/(?P<app_id>\d+)$', views.log_list),
+    url(r'^api/v1/apps/delete/(?P<app_id>\d+)$', views.app_kill),
     url(r'^api/v1/apps/(?P<app_id>\d+)/(?P<log_id>\d+)$', views.log_kill),
 
     # carrot.js stuff

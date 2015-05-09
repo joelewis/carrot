@@ -64,7 +64,7 @@ def app_list(request):
         return HttpResponse(json.dumps(model2dict(app)), content_type="application/json")
     if request.method == 'GET':
         apps = Application.objects.filter(user=request.user)
-        response = [model_to_dict(app) for app in apps]
+        response = [model2dict(app) for app in apps]
         return HttpResponse(json.dumps(response), content_type="application/json")
 
 
@@ -73,13 +73,15 @@ def app_list(request):
 def log_list(request, app_id):
     user = request.user
     if request.method == 'POST':
-        data = json.loads(request.body)
+        data = request.POST
         app = get_object_or_404(Application, id=app_id, user=user)
+        print data
         try:
-        	title = data['title']
-        	description = data['description'], link = data['link']
+            title = data['title']
+            description = data['description']
+            link = data.get('link', None)
         except:
-        	return HttpResponse(status=400)
+            return HttpResponse(status=400)
 
         log = LogEntry(title=title, description=description, link=link, app=app)
         log.save()

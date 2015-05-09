@@ -80,6 +80,16 @@ span.list-group-item.active span.glyphicon{
 	border: none;
 	outline: none;
 	width: 100%;
+  border-bottom: 1px solid #ccc;
+  height: 78px;
+}
+
+.log-link-add {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  width: 64%;
+  margin-top: 5px;
 }
 
 .list-group-vani {

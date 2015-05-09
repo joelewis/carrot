@@ -103,3 +103,53 @@ def log_list(request, app_id):
         app['embed_script'] = script_embed
         app["logs"] = logs
         return api_response(app)
+
+
+
+
+
+# carrot.js related views
+
+
+def get_unread_logentry_list(app, user_id):
+	"""
+	returns a list of log entries for <app> that are unread by the given <user_id>
+	"""
+	read_logentries = [logentryread.entry for logentryread in LogEntryRead.objects.filter(app=app, user_id=user_id)]
+	unreads = [entry for entry in LogEntry.objects.filter(app=app) if entry not in read_logentries]
+	return unreads
+
+def unread_count(request, app_key, user_id):
+    app = Application.objects.get(secret_key=app_key)
+    count = len(get_unread_logentry_list(app, user_id))
+    if request.GET.get('callback') != None:
+    	return HttpResponse(request.GET.get('callback') + '({ count: %s})' % count, content_type="application/json")
+    return HttpResponse(str(count))
+
+
+
+def unread_logs(request, app_key, user_id):
+	"""
+	returns a jsonp or json formatted unread notifications(log entries)
+	"""
+	app = Application.objects.get(secret_key=app_key)
+	notifications = [model2dict(e) for e in get_unread_logentry_list(app, user_id)]
+	if request.GET.get('callback') != None:
+		return HttpResponse(request.GET.get('callback') + '({ data: ' + json.dumps(notifications, indent=4) + '})', content_type="application/json")
+	else:
+		return HttpResponse(json.dumps(notifications, indent=4), content_type="application/json")
+
+def mark_as_read(request, app_key, user_id):
+	"""
+	mark all unread notifications for that user, as read
+	"""
+	app = Application.objects.get(secret_key=app_key)
+	unreads = get_unread_logentry_list(app, user_id)
+	for entry in unreads:
+		logentryread = LogEntryRead(app=app, entry=entry, user_key=user_id)
+		logentryread.save()
+	message = 'marked {0} notifications as read'.format(len(unreads))
+	if request.GET.get('callback') != None:
+		return HttpResponse(request.GET.get('callback') + '({ "message": "' + message + '"})', content_type="application/json")
+	else:
+		return HttpResponse(json.dumps({'message':message}, indent=4), content_type="application/json")

@@ -38,3 +38,4 @@ class LogEntryRead(models.Model):
     log = models.ForeignKey('LogEntry')
     user_id = models.TextField()
     date_created = models.DateTimeField(_('date created'), default=timezone.now)
+    app = models.ForeignKey('Application', null=True)

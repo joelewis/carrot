@@ -10,24 +10,23 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
   </head>
   <body class="iframe-body">
-
-  <div class="container">
-    {% block body %}
-    {% for notification in notifications %}
-    <div class="main-list-container">
-      <div class="notification-item-container">
-        <div class="notification-item-title clearfix">
-          <div class="notification-item-title">{{notification.title}}</div>
-        </div>
-        <div class="notification-item-description">{{notification.description}}
-          {% if notification.link %}
-            <div class="link"> <a href="{{notification.link}}">Learn More</a></div>
-          {% endif %}
+    <div class="container">
+      {% block body %}
+      {% for notification in notifications %}
+      <div class="main-list-container">
+        <div class="notification-item-container">
+          <div class="notification-item-title clearfix">
+            <div class="notification-item-title"> {{ notification.title }} </div>
+          </div>
+          <div class="notification-item-description"> {{ notification.description }}
+            {% if notification.link %}
+              <div class="link"> <a href="{{notification.link}}">Learn More</a></div>
+            {% endif %}
+          </div>
         </div>
       </div>
-    </div>
-    {% endfor %}
-    {% endblock %}
+      {% endfor %}
+      {% endblock %}
     </div>
     <script src="/static/js/jquery-1.11.3.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>

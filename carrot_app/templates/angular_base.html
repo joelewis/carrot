@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible"  content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/static/css/bootstrap.min-united.css" rel="stylesheet">
-    <!-- <link href="/static/css/bootstrap-theme.min.css" rel="stylesheet"> -->
     <link href="/static/css/carrot.css" rel="stylesheet">
     <base href="/">
   </head>
@@ -17,11 +16,9 @@
           <div class="navbar-header">
             <a class="navbar-brand" href="#">Carrot</a>
           </div>
-
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-              <!-- <li><a href="#">Link</a></li> -->
               <li class="dropdown">
                 <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Signed in as {{ user.username }} <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -29,8 +26,8 @@
                 </ul>
               </li>
             </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+          </div>  <!-- /.navbar-collapse -->
+        </div>  <!-- /.container-fluid -->
       </nav>
       {% block body %}
         <div ng-view></div>
@@ -48,7 +45,7 @@
     <script src="/static/js/app.js"></script>
     <script src="/static/js/moment.js"></script>
     <script src="/static/js/controllers.js"></script>
-    <script>carrot = {}; carrot.user_identifier='{{user.username}}'; carrot.app_secret='EdDT5tQ4PDNiYUpKzNEsBR'; </script>
+    <script>carrot = {}; carrot.user_identifier='{{ user.username }}'; carrot.app_secret='EdDT5tQ4PDNiYUpKzNEsBR'; </script>
     <script type="text/javascript" src="http://localhost:8000/static/js/carrot.js"></script>
   </body>
 </html>

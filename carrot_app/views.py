@@ -10,18 +10,29 @@ from carrot_app.models import *
 from carrot_app.utilities import *
 from django.conf import settings
 
+stuff = ''' <div style="text-shadow: none" class="alert alert-danger alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4>Oh snap! %s failed!</h4>
+                <p> %s </p></div>
+                <script> $('#myModal a[href="#%s"]').tab('show') </script>
+                <script> $('#myModal').modal('show') </script>'''
+
 @csrf_exempt
 def user_signup(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         email = request.POST['email']
-        user = User.objects.create_user(username=username, email=email, password=password)
+        try:
+            user = User.objects.create_user(username=username, email=email, password=password)
+        except Exception:
+            do = 'Signup'
+            what = "Username already exists! Please choose a different name."
+            return render(request, 'landing.html', {'login_fail': '', 'signup_fail': stuff % ('Signup', what, 'signup')})
         user.save()
         user = authenticate(username=username, password=password)
         login(request, user)
         return HttpResponseRedirect('/')
-    return render(request, '/', {});
 
 @csrf_exempt
 def user_login(request):
@@ -32,12 +43,8 @@ def user_login(request):
         if user is not None:
             login(request, user)
             return HttpResponseRedirect('/')
-    stuff = ''' <div style="text-shadow: none" class="alert alert-danger alert-dismissible fade in" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4>Oh snap! Login failed!</h4>
-                <p>Please ensure that you've given the correct login credentials.</p></div>
-                <script> $("#myModal").modal('show') </script> '''
-    return render(request, 'landing.html', {'login_fail': stuff})
+    what = "Please ensure that you've given the correct login credentials."
+    return render(request, 'landing.html', {'signup_fail': '', 'login_fail': stuff % ('Login', what, 'login')})
 
 @csrf_exempt
 def user_logout(request):
@@ -50,7 +57,7 @@ def index(request):
         return render(request, 'base.html', {"user": request.user})
     else:
         # render landing page
-        return render(request, 'landing.html', {'login_fail': ''})
+        return render(request, 'landing.html', {'login_fail': '', 'signup_fail': ''})
 
 @login_required
 @csrf_exempt

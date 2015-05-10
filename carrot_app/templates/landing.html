@@ -32,7 +32,6 @@
           </div>
           <div class="mastfoot">
             <div class="inner">
-              <!-- <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p> -->
             </div>
           </div>
         </div>
@@ -92,6 +91,7 @@
 			    </div>
 			    <div role="tabpanel" class="tab-pane" id="signup">
 			      <form role="form" action="/signup/" method="post"><br>
+			      	{{ signup_fail | safe }}
 			      	<div class="form-group">
 				      <label class="poplabel" for="text">Username:</label>
 				      <input type="text" class="form-control" id="username" placeholder="johndoe" name="username">

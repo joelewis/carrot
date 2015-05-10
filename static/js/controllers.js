@@ -48,6 +48,10 @@ angular.module('carrot.controllers', [])
        });
     }
 
+    $scope.timeAgo = function(time) {
+          return moment(new Date(time.split(' ').join('T'))).fromNow()
+        }
+
   }])
    .controller('AppCtrl', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
 

@@ -18,7 +18,7 @@ def user_signup(request):
         email = request.POST['email']
         user = User.objects.create_user(username=username, email=email, password=password)
         user.save()
-        user = authenticate(username=username, password=password)   # will always return the user object.
+        user = authenticate(username=username, password=password)
         login(request, user)
         return HttpResponseRedirect('/')
     return render(request, '/', {});
@@ -32,7 +32,12 @@ def user_login(request):
         if user is not None:
             login(request, user)
             return HttpResponseRedirect('/')
-    return render(request, '/', {})
+    stuff = ''' <div style="text-shadow: none" class="alert alert-danger alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4>Oh snap! Login failed!</h4>
+                <p>Please ensure that you've given the correct login credentials.</p></div>
+                <script> $("#myModal").modal('show') </script> '''
+    return render(request, 'landing.html', {'login_fail': stuff})
 
 @csrf_exempt
 def user_logout(request):
@@ -45,7 +50,7 @@ def index(request):
         return render(request, 'base.html', {"user": request.user})
     else:
         # render landing page
-        return render(request, 'landing.html', {})
+        return render(request, 'landing.html', {'login_fail': ''})
 
 @login_required
 @csrf_exempt

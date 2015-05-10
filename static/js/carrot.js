@@ -6,7 +6,7 @@
 
          //'<div style="position: fixed;bottom: 20px;right: 20px;"><div class="notification-nos" style="background: #CC8300;padding: 6px;color: #fff;font-size: 20px;border-radius: 100%;  padding-left: 15px;padding-right: 15px;box-shadow: 10px;box-shadow: #999 0px 0px 10px;cursor: pointer;"></div></div>';
          var handleDOM = ''+
-         '<div class="notification-text" style="position:fixed; bottom:20px; right:20px; width:400px; height:60px; border:1px solid #5893C5; border-radius:7px; background:rgba(0, 0, 0, 0.6); padding:10px; font-weight:bolder; color:#FFFFFF; text-align:center; cursor:pointer;">'+
+         '<div class="notification-text" style="position:fixed; bottom:20px; right:20px; width:262px; height:60px; border:1px solid #5893C5; border-radius:7px; background:rgba(0, 0, 0, 0.6); padding:10px; font-weight:bolder; color:#FFFFFF; text-align:center; cursor:pointer;">'+
            '<p> &nbsp; Things have become better since your last login!</p>'+
          '<div class="notification-nos" style="background: #CC8300; padding: 6px; color: #fff; font-size: 20px; border-radius: 100%; padding-left: 15px; padding-right: 15px; box-shadow: 10px; box-shadow: #999 0px 0px 10px; cursor: pointer; position: absolute; left:-25px; width:42px;">8</div></div>';
 

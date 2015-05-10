@@ -12,8 +12,17 @@
   <body class="iframe-body">
     <div class="container">
       {% block body %}
+      <div>
+        <div class="notification-item-container">
+          <div class="notification-item-title clearfix">
+            <div class="notification-item-title" style="margin-top: -6px;"> Since You've Been Gone! </div>
+          </div>
+          <div class="notification-item-description">
+          </div>
+        </div>
+      </div>
       {% for notification in notifications %}
-      <div class="main-list-container">
+      <div>
         <div class="notification-item-container">
           <div class="notification-item-title clearfix">
             <div class="notification-item-title"> {{ notification.title }} </div>

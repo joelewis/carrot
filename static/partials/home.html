@@ -15,6 +15,7 @@
   <a href="/apps/{{ app.id }}" class="list-group-item" ng-repeat="app in apps">
     {{ app.title }}
     <span style="color:#A9A9A9;" class="pull-right"> {{ timeAgo(app.date_created) }} </span>
-    <!-- <span ng-click="deleteApp(app)" class="glyphicon glyphicon-trash pull-right"></span> -->
+    <!-- There's an issue here - the <a> tag should be overridden by deleteApp(app) method (which gives the option to delete apps), but we're unable to look into right now...
+    <span ng-click="deleteApp(app)" class="glyphicon glyphicon-trash pull-right"> </span> -->
   </a>
 </div>
